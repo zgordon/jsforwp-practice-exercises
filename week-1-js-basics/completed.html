@@ -33,7 +33,7 @@
   var ids = [1, 2, 3, 4];
 
   // 7. Loop over the ids and log them all out
-  for (var count = 0; count < ids.length; count++) {
+  for (var count = 0, max = ids.length; count < max; count++) {
     console.log(ids[count]);
   }
 
@@ -56,13 +56,13 @@
     }
   ];
   // 9. Loop over the array of posts and log out the title of each one
-  for (var count = 0; count < posts.length; count++) {
+  for (var count = 0, max = posts.length; count < max; count++) {
     console.log(posts[count].title);
   }
   // 10. Create a function that will take an array of posts and log out the title and content of each post.
-  function logPosts(arrayOfPosts) {
-    for (var count = 0; count < arrayOfPosts.length; count++) {
-      var post = arrayOfPosts[count];
+  function logPosts(posts) {
+    for (var count = 0, max = posts.length; count < max; count++) {
+      var post = posts[count];
       console.log(post.title);
       console.log(post.content);
     }
