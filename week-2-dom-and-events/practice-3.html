@@ -26,5 +26,27 @@
       </form>
     </section>
   </body>
-  <script></script>
+  <script>
+    
+  // 3. Set the text for the h2 to "Newsletter Signup," set the value for the name input field to your name, set the value for the email input field to your email.
+
+  // get first h2 element of the page
+  var h2 = document.getElementsByTagName('h2')[0];
+  // set the innerText of the h2 to our string
+  h2.innerText = 'Newsletter Signup';
+
+  // get Input field with the name of name
+  var nameInput = document.getElementsByName('name')[0];
+  // set the value of the input field to our string
+  nameInput.value = 'John Appleseed';
+
+  // get Input field wiith the name of email
+  var emalInput = document.getElementsByName('email')[0];
+  // set the value of the input field to our string
+  emalInput.value = 'john@appleseed.com';
+
+
+
+  
+  </script>
 </html>
