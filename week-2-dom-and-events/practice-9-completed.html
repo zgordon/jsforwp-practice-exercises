@@ -51,41 +51,68 @@
     
     // 9. Create a simple lightbox that pops up with a full size image when any image inside of a container with a class of "lightbox" is clicked on.
 
+    // get the first element with the class lightbox
     var lightbox = document.querySelector('.lightbox');
+
+    // get all images inside the lightbox 
     var images = lightbox.getElementsByTagName('img');
 
+    // create a empty variable for our selected Image
     var selectedImage;
 
+    // create a button element
     var closeButton = document.createElement('button');
+
+    // create a text node for our button
     var closeButtonText = document.createTextNode('X');
 
+    // set the id of the close button to close-button
     closeButton.id = "close-button";
 
+    // append the text of the button to the button
     closeButton.appendChild(closeButtonText);
 
-    closeButton.addEventListener( 'click', function(event) {
+    // add a click event listener to the close vutton
+    closeButton.addEventListener( 'click', handleCloseButtonClick );
 
-      event.preventDefault();
-
-      closeButton.remove();
-
-      selectedImage.remove();
-
-    });
-
+    // iterate over all images and create a local variable called image
     for (var image of images) {
 
-      image.addEventListener( 'click', function(event) {
-        
-        event.preventDefault();
+      // add a click event listener to each image
+      image.addEventListener( 'click', handleImageSelection );
+    }
 
-        selectedImage = event.target.cloneNode(true);
+    // create a function to handle image selection
+    function handleImageSelection(event) {
 
-        lightbox.appendChild(selectedImage).classList.add('selected');
+      // prevent the defaule event behaivior 
+      event.preventDefault();
 
-        lightbox.appendChild(closeButton);
+      // set the selected image variable to a clone of the image the user has clicked on
+      selectedImage = event.target.cloneNode(true);
 
-      });
+      // add the class selected to the selected image
+      selectedImage.classList.add('selected')
+      
+      // append the selected image to the lightbox container
+      lightbox.appendChild(selectedImage);
+
+    // append the close button to the lightbox container
+      lightbox.appendChild(closeButton);
+
+    }
+
+    // create a function to handle clicking the close button
+    function handleCloseButtonClick(event) {
+
+      // prevent the defaule event behaivior 
+      event.preventDefault();
+
+      // remove the close button 
+      closeButton.remove();
+
+      // remove the selected image
+      selectedImage.remove();
     }
   
   </script>
