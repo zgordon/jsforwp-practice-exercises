@@ -11,7 +11,7 @@
       <h1><a href="#link-1">Esse reprehenderit</a></h1>
       <p>culpa nulla cillum do officia elit culpa dolor.</p>
     </header>
-    <hr>
+    <hr />
     <section id="editor">
       <h2>Live Preview</h2>
       <form action="" id="post-creation-form">
@@ -28,111 +28,152 @@
     </section>
     <section id="content">
       <ul class="posts">
-          <li class="post">
-              <h2 class="entry-title"><a href="#">Aliquip</a></h2>
-              <div class="entry-content">
-                <p>Culpa nulla cillum do officia elit culpa dolor.</p>
-              </div>
-          </li>
-        </ul>
+        <li>
+          <article class="post">
+            <h2 class="entry-title"><a href="#">Aliquip</a></h2>
+            <div class="entry-content">
+              <p>Culpa nulla cillum do officia elit culpa dolor.</p>
+            </div>
+          </article>
+        </li>
+      </ul>
     </section>
   </body>
   <script>
-    
     // 10. Create a form with an input and textarea that let's you add a post title and content.  Create a live preview of the form that let's you see what the title and content would look like on the page.
 
-    var postList = document.querySelector('.posts');
-    var postCreationForm = document.getElementById('post-creation-form');
-    var titleInput = document.getElementById('title-input');
-    var contentInput = document.getElementById('content-input');
+    var postList = document.querySelector(".posts"),
+      postForm = document.getElementById("post-creation-form"),
+      titleInput = document.getElementById("title-input"),
+      contentInput = document.getElementById("content-input"),
+      isAddingPost = false;
 
-    var newPostPreviewActive = false;
-    var newPostPreview = null;
-    var newPostTitle = null;
-    var newPostContent = null;
+    // var newPostPreviewActive = false,
+    //   newPostPreview = null,
+    //   newPostTitle = null,
+    //   newPostContent = null;
 
-    var genericPost = document.createElement('li');
-    var genericEntryTitle = document.createElement('h2');
-    var genericEntryTitleLink = document.createElement('a');
-    var genericEntryContent = document.createElement('div');
-    var genericParagraph = document.createElement('p');
+    // var genericPost = document.createElement("li"),
+    //   genericEntryTitle = document.createElement("h2"),
+    //   genericEntryTitleLink = document.createElement("a"),
+    //   genericEntryContent = document.createElement("div"),
+    //   genericParagraph = document.createElement("p");
 
-    genericPost.classList.add('post');
-    genericEntryTitle.classList.add('entry-title');
-    genericEntryContent.classList.add('entry-content');
+    // genericPost.classList.add("post");
+    // genericEntryTitle.classList.add("entry-title");
+    // genericEntryContent.classList.add("entry-content");
 
-    genericEntryTitleLink.href = '#';
+    // genericEntryTitleLink.href = "#";
 
-    genericPost.appendChild(genericEntryTitle);
-    genericPost.appendChild(genericEntryContent);
-    genericEntryTitle.appendChild(genericEntryTitleLink);
-    genericEntryContent.appendChild(genericParagraph);
+    // genericPost.appendChild(genericEntryTitle);
+    // genericPost.appendChild(genericEntryContent);
+    // genericEntryTitle.appendChild(genericEntryTitleLink);
+    // genericEntryContent.appendChild(genericParagraph);
 
-    postCreationForm.addEventListener('submit', formSubmitHandler )
-    titleInput.addEventListener('input', titleChangeHandler );
-    contentInput.addEventListener('input', contentChangeHandler );
+    titleInput.addEventListener("input", titleChangeHandler);
+    contentInput.addEventListener("input", contentChangeHandler);
+    postForm.addEventListener("submit", formSubmitHandler);
 
-    function createPost( title, content ) {
-      var genericPost = document.createElement('li');
-      var genericEntryTitle = document.createElement('h2');
-      var genericEntryTitleLink = document.createElement('a');
-      var genericEntryContent = document.createElement('div');
-      var genericParagraph = document.createElement('p');
+    function createPost(title, content) {
+      var post = document.createElement("article"),
+        titleEl = document.createElement("h2"),
+        titleLinkEl = document.createElement("a"),
+        contentEl = document.createElement("div");
 
-      genericPost.classList.add('post');
-      genericEntryTitle.classList.add('entry-title');
-      genericEntryContent.classList.add('entry-content');
+      post.classList.add("post");
+      titleEl.classList.add("entry-title");
+      contentEl.classList.add("entry-content");
 
-      genericEntryTitleLink.href = '#';
+      titleLinkEl.href = "#";
 
-      genericEntryTitleLink.innerText = title;
-      genericParagraph.innerText = content;
+      titleLinkEl.innerText = title;
+      contentEl.innerHTML = content;
 
-      genericPost.appendChild(genericEntryTitle);
-      genericPost.appendChild(genericEntryContent);
-      genericEntryTitle.appendChild(genericEntryTitleLink);
-      genericEntryContent.appendChild(genericParagraph);
-      return genericPost;
-    };
+      titleEl.appendChild(titleLinkEl);
+      post.appendChild(titleEl);
+      post.appendChild(contentEl);
+      return post;
+    }
+
+    function createPreviewPost() {
+      var previewPost = createPost("", "");
+      previewPost.id = "preview-post";
+      renderPost(previewPost);
+    }
+
+    function renderPost(post) {
+      var listEl = document.createElement("li");
+
+      listEl.appendChild(post);
+      postList.appendChild(listEl);
+    }
+
+    function clearForm() {
+      var previewPost = document.getElementById("preview-post");
+
+      titleInput.value = "";
+      contentInput.value = "";
+      previewPost.parentElement.remove();
+      isAddingPost = false;
+    }
 
     function formSubmitHandler(event) {
       event.preventDefault();
-      newPost = genericPost.cloneNode(true);
-      titleInput.value = "";
-      contentInput.value = "";
-      genericEntryTitleLink.innerText = "";
-      genericParagraph.innerText = "";
-      postList.appendChild(newPost);
-      newPostPreview = false;
+
+      var title = titleInput.value,
+        content = contentInput.value,
+        post = createPost(title, content);
+
+      renderPost(post);
+      clearForm();
+
+      // newPost = genericPost.cloneNode(true);
+      // titleInput.value = "";
+      // contentInput.value = "";
+      // genericEntryTitleLink.innerText = "";
+      // genericParagraph.innerText = "";
+      // postList.appendChild(newPost);
+      // console.log(postList);
+      // newPostPreview = false;
     }
 
     function titleChangeHandler(event) {
       if (event.target.value === "") {
         return;
       }
-      if (newPostPreview) {
-        newPostPreview.remove();
+
+      if (!isAddingPost) {
+        createPreviewPost();
+        isAddingPost = true;
       }
-      console.log("executed");
-      var title = event.target.value;
-      newPostTitle = title;
-      newPostPreview = createPost( newPostTitle, newPostContent );
-      postList.appendChild(newPostPreview);
+
+      var previewPost = document.getElementById("preview-post"),
+        titleEL = previewPost.querySelector("h2 a");
+
+      titleEL.innerText = event.target.value;
     }
 
     function contentChangeHandler(event) {
       if (event.target.value === "") {
         return;
       }
-      if (newPostPreview) {
-        newPostPreview.remove();
+      // if (newPostPreview) {
+      //   newPostPreview.remove();
+      // }
+
+      if (!isAddingPost) {
+        createPreviewPost();
+        isAddingPost = true;
       }
-      console.log("executed");
-      var content = event.target.value;
-      newPostContent = content;
-      newPostPreview = createPost( newPostTitle, newPostContent );
-      postList.appendChild(newPostPreview);
+
+      var previewPost = document.getElementById("preview-post"),
+        contentEl = previewPost.querySelector(".entry-content");
+
+      contentEl.innerHTML = event.target.value;
+
+      // newPostContent = content;
+      // newPostPreview = createPost(newPostTitle, newPostContent);
+      // postList.appendChild(newPostPreview);
     }
-  
   </script>
 </html>
