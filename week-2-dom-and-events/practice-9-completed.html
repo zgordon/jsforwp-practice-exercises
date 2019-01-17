@@ -63,29 +63,31 @@
 
     closeButton.appendChild(closeButtonText);
 
-    closeButton.addEventListener( 'click', function(event) {
+    closeButton.addEventListener( 'click', handleCloseButtonClick );
+
+    for (var image of images) {
+
+      image.addEventListener( 'click', handleImageSelection );
+    }
+
+    function handleImageSelection(event) {
+      event.preventDefault();
+
+      selectedImage = event.target.cloneNode(true);
+
+      lightbox.appendChild(selectedImage).classList.add('selected');
+
+      lightbox.appendChild(closeButton);
+
+    }
+
+    function handleCloseButtonClick(event) {
 
       event.preventDefault();
 
       closeButton.remove();
 
       selectedImage.remove();
-
-    });
-
-    for (var image of images) {
-
-      image.addEventListener( 'click', function(event) {
-        
-        event.preventDefault();
-
-        selectedImage = event.target.cloneNode(true);
-
-        lightbox.appendChild(selectedImage).classList.add('selected');
-
-        lightbox.appendChild(closeButton);
-
-      });
     }
   
   </script>
