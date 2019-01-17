@@ -46,7 +46,10 @@
     var titleInput = document.getElementById('title-input');
     var contentInput = document.getElementById('content-input');
 
-    var newPostPreview = false;
+    var newPostPreviewActive = false;
+    var newPostPreview = null;
+    var newPostTitle = null;
+    var newPostContent = null;
 
     var genericPost = document.createElement('li');
     var genericEntryTitle = document.createElement('h2');
@@ -69,12 +72,34 @@
     titleInput.addEventListener('input', titleChangeHandler );
     contentInput.addEventListener('input', contentChangeHandler );
 
+    function createPost( title, content ) {
+      var genericPost = document.createElement('li');
+      var genericEntryTitle = document.createElement('h2');
+      var genericEntryTitleLink = document.createElement('a');
+      var genericEntryContent = document.createElement('div');
+      var genericParagraph = document.createElement('p');
+
+      genericPost.classList.add('post');
+      genericEntryTitle.classList.add('entry-title');
+      genericEntryContent.classList.add('entry-content');
+
+      genericEntryTitleLink.href = '#';
+
+      genericEntryTitleLink.innerText = title;
+      genericParagraph.innerText = content;
+
+      genericPost.appendChild(genericEntryTitle);
+      genericPost.appendChild(genericEntryContent);
+      genericEntryTitle.appendChild(genericEntryTitleLink);
+      genericEntryContent.appendChild(genericParagraph);
+      return genericPost;
+    };
+
     function formSubmitHandler(event) {
       event.preventDefault();
-      
       newPost = genericPost.cloneNode(true);
-      titleInput.value = null;
-      contentInput.value = null;
+      titleInput.value = "";
+      contentInput.value = "";
       genericEntryTitleLink.innerText = "";
       genericParagraph.innerText = "";
       postList.appendChild(newPost);
@@ -82,25 +107,31 @@
     }
 
     function titleChangeHandler(event) {
-      var title = event.target.value;
-
-      if (!newPostPreview) {
-        newPostPreview = true;
-        postList.appendChild(genericPost);
+      if (event.target.value === "") {
+        return;
       }
-      genericEntryTitleLink.innerText = title;
-
+      if (newPostPreview) {
+        newPostPreview.remove();
+      }
+      console.log("executed");
+      var title = event.target.value;
+      newPostTitle = title;
+      newPostPreview = createPost( newPostTitle, newPostContent );
+      postList.appendChild(newPostPreview);
     }
 
     function contentChangeHandler(event) {
-      var content = event.target.value;
-
-      if (!newPostPreview) {
-        newPostPreview = true;
-        postList.appendChild(genericPost);
+      if (event.target.value === "") {
+        return;
       }
-      genericParagraph.innerText = content;
-
+      if (newPostPreview) {
+        newPostPreview.remove();
+      }
+      console.log("executed");
+      var content = event.target.value;
+      newPostContent = content;
+      newPostPreview = createPost( newPostTitle, newPostContent );
+      postList.appendChild(newPostPreview);
     }
   
   </script>
