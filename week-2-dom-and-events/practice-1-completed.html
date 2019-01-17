@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Practice 2</title>
+    <title>Practice 1</title>
   </head>
   <body>
     <header>
@@ -25,7 +25,7 @@
           <p>Culpa nulla cillum do officia elit culpa dolor.</p>
         </div>
       </article>
-      <article id="start-here" class="post">
+      <article class="post">
         <h2 class="entry-title"><a href="#">Eiusmod</a></h2>
         <div class="entry-content">
           <p>Cillum ullamco tempor reprehenderit enim.</p>
@@ -44,8 +44,28 @@
     </section>
   </body>
   <script>
+    
+    // 1. Select the following elements from the page and log them to the console: All the links on the page, the element with an id of "main," all elements with a class of "featured,"  the first element with a class of "featured."
 
-  // 2. Select the element with an id of "start-here."  Then select the syblings of the element, the parent of the element, the parent of the parent of the element, and the children of the element and save them as variables.  Then log them all to the console.
+    // get all the links of the page
+    var links = document.getElementsByTagName('a');
+    console.log(links);
+
+    // get the first element with the id main
+    var main = document.getElementById('main');
+    console.log(main);
+
+    // get all elements wiith the class .featured
+    var featuredItems = document.getElementsByClassName('featured');
+    console.log(featuredItems);
+
+    // get the first element with the class featured
+    var firstFeaturedItem = document.getElementsByClassName('featured')[0];
+    console.log(firstFeaturedItem);
+
+    // alternate aproach to get the first element with the class featured
+    var alternateFirstFeaturedItem = document.querySelector('.featured');
+    console.log(alternateFirstFeaturedItem);
 
   </script>
 </html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Practice 9</title>
+  </head>
+  <body>
+    <style>
+      .lightbox {
+        position: relative;
+      }
+      .lightbox img {
+        width: 100px;
+        height: auto;
+      }
+      .lightbox img.selected {
+        position: absolute;
+        top: 100px;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        width: 80%;
+        height: auto;
+      }
+      #close-button {
+        position: absolute;
+        z-index: 10;
+        top: 100px;
+        right: 10%;
+      }
+    </style>
+    <header>
+      <h1><a href="#link-1">Esse reprehenderit</a></h1>
+      <p>culpa nulla cillum do officia elit culpa dolor.</p>
+    </header>
+    <hr>
+    <section class="lightbox">
+        <img src="https://source.unsplash.com/ENsxoIz33SA/600x400">
+        <img src="https://source.unsplash.com/4rDCa5hBlCs/600x400">
+        <img src="https://source.unsplash.com/tGTVxeOr_Rs/600x400">
+        <img src="https://source.unsplash.com/oR0uERTVyD0/600x400">
+        <img src="https://source.unsplash.com/2VDa8bnLM8c/600x400">
+        <img src="https://source.unsplash.com/cssvEZacHvQ/600x400">
+        <img src="https://source.unsplash.com/8qEuawM_txg/600x400">
+        <img src="https://source.unsplash.com/pBgnT4KH8d4/600x400">
+    </section>
+  </body>
+  <script>
+    
+    // 9. Create a simple lightbox that pops up with a full size image when any image inside of a container with a class of "lightbox" is clicked on.
+
+    // get the first element with the class lightbox
+    var lightbox = document.querySelector('.lightbox');
+
+    // get all images inside the lightbox 
+    var images = lightbox.getElementsByTagName('img');
+
+    // create a empty variable for our selected Image
+    var selectedImage;
+
+    // create a button element
+    var closeButton = document.createElement('button');
+
+    // create a text node for our button
+    var closeButtonText = document.createTextNode('X');
+
+    // set the id of the close button to close-button
+    closeButton.id = "close-button";
+
+    // append the text of the button to the button
+    closeButton.appendChild(closeButtonText);
+
+    // add a click event listener to the close vutton
+    closeButton.addEventListener( 'click', handleCloseButtonClick );
+
+    // iterate over all images and create a local variable called image
+    for (var image of images) {
+
+      // add a click event listener to each image
+      image.addEventListener( 'click', handleImageSelection );
+    }
+
+    // create a function to handle image selection
+    function handleImageSelection(event) {
+
+      // prevent the defaule event behaivior 
+      event.preventDefault();
+
+      // set the selected image variable to a clone of the image the user has clicked on
+      selectedImage = event.target.cloneNode(true);
+
+      // add the class selected to the selected image
+      selectedImage.classList.add('selected')
+      
+      // append the selected image to the lightbox container
+      lightbox.appendChild(selectedImage);
+
+    // append the close button to the lightbox container
+      lightbox.appendChild(closeButton);
+
+    }
+
+    // create a function to handle clicking the close button
+    function handleCloseButtonClick(event) {
+
+      // prevent the defaule event behaivior 
+      event.preventDefault();
+
+      // remove the close button 
+      closeButton.remove();
+
+      // remove the selected image
+      selectedImage.remove();
+    }
+  
+  </script>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Practice 8</title>
+  </head>
+  <body>
+    <header>
+      <h1><a href="#link-1">Esse reprehenderit</a></h1>
+      <p>culpa nulla cillum do officia elit culpa dolor.</p>
+    </header>
+    <hr>
+    <section id="main">
+      <h2>Add item to list</h2>
+      <ul id="list">
+        <li class="list-item">
+            <input type="text" value="" />
+        </li>
+      </ul>
+      <button id="add-list-item">Add</button>
+    </section>
+  </body>
+  <script>
+    
+    // 8. Add a button to the page that adds a new list item with an input field inside it
+
+    // get the element with the id list  
+    var list = document.getElementById('list');
+
+    // get the element with the id add-list-item
+    var addButtom = document.getElementById('add-list-item');
+
+    // create all our elements
+    var genericListItem = document.createElement('li');
+    var genericInputField = document.createElement('input');
+
+    // add to the class list of our generic list element
+    genericListItem.classList.add('list-item');
+
+    // set the type of our generic input field to text
+    genericInputField.type = 'text';
+
+    // append the generic Input field to our generic list item
+    genericListItem.appendChild(genericInputField);
+
+    // ad a click event listener to the button
+    addButtom.addEventListener('click', handleAddButtonClick);
+
+    function handleAddButtonClick(event) {
+
+      // prevent the default behaivior 
+      event.preventDefault();
+
+      // deep clone our generic list item (meaning including all child elements)
+      var newListItem = genericListItem.cloneNode(true);
+
+      // append the new list item to the list
+      list.appendChild(newListItem);
+    }
+  
+  </script>
+</html>
