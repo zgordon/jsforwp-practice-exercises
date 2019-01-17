@@ -46,7 +46,9 @@
     genericListItem.appendChild(genericInputField);
 
     // ad a click event listener to the button
-    addButtom.addEventListener('click', function(event) {
+    addButtom.addEventListener('click', handleAddButtonClick);
+
+    function handleAddButtonClick(event) {
 
       // prevent the default behaivior 
       event.preventDefault();
@@ -56,7 +58,7 @@
 
       // append the new list item to the list
       list.appendChild(newListItem);
-    });
+    }
   
   </script>
 </html>
