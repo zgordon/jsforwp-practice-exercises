@@ -18,7 +18,7 @@
 1. Select the following elements from the page and log them to the console: All the links on the page, the element with an id of "main," all elements with a class of "featured,"  the first element with a class of "featured."
 2. Select the element with an id of "start-here."  Then select the syblings of the element, the parent of the element, the parent of the parent of the element, and the children of the element and save them as variables.  Then log them all to the console.
 3. Set the text for the h2 to "Newsletter Signup," set the value for the name input field to your name, set the value for the email input field to your email.
-4. Create the following markup using createElement() and createTextNode() and then append it to the page.
+4. Create the following markup using createElement() and createTextNode() and then append it to the page inside of the element with id of "posts."
 ```
 <article class="post">
   <h2 class="entry-title"><a href="#">Title</a></h2>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Practice 10</title>
+  </head>
+  <body>
+    <header>
+      <h1><a href="#link-1">Esse reprehenderit</a></h1>
+      <p>culpa nulla cillum do officia elit culpa dolor.</p>
+    </header>
+    <hr />
+    <section id="editor">
+      <h2>Live Preview</h2>
+      <form action="" id="post-creation-form">
+        <p>
+          <label for="title">Title</label>
+          <input type="text" id="title-input" name="title" value="" />
+        </p>
+        <p>
+          <label for="content">Content</label>
+          <textarea id="content-input" name="content"></textarea>
+        </p>
+        <p><input type="submit" value="Add to page" /></p>
+      </form>
+    </section>
+    <section id="content">
+      <ul class="posts">
+        <li>
+          <article class="post">
+            <h2 class="entry-title"><a href="#">Aliquip</a></h2>
+            <div class="entry-content">
+              <p>Culpa nulla cillum do officia elit culpa dolor.</p>
+            </div>
+          </article>
+        </li>
+      </ul>
+    </section>
+  </body>
+  <script>
+    // 10. Create a form with an input and textarea that let's you add a post title and content.  Create a live preview of the form that let's you see what the title and content would look like on the page.
+
+    var postList = document.querySelector(".posts"),
+      postForm = document.getElementById("post-creation-form"),
+      titleInput = document.getElementById("title-input"),
+      contentInput = document.getElementById("content-input"),
+      isAddingPost = false;
+
+    // var newPostPreviewActive = false,
+    //   newPostPreview = null,
+    //   newPostTitle = null,
+    //   newPostContent = null;
+
+    // var genericPost = document.createElement("li"),
+    //   genericEntryTitle = document.createElement("h2"),
+    //   genericEntryTitleLink = document.createElement("a"),
+    //   genericEntryContent = document.createElement("div"),
+    //   genericParagraph = document.createElement("p");
+
+    // genericPost.classList.add("post");
+    // genericEntryTitle.classList.add("entry-title");
+    // genericEntryContent.classList.add("entry-content");
+
+    // genericEntryTitleLink.href = "#";
+
+    // genericPost.appendChild(genericEntryTitle);
+    // genericPost.appendChild(genericEntryContent);
+    // genericEntryTitle.appendChild(genericEntryTitleLink);
+    // genericEntryContent.appendChild(genericParagraph);
+
+    titleInput.addEventListener("input", titleChangeHandler);
+    contentInput.addEventListener("input", contentChangeHandler);
+    postForm.addEventListener("submit", formSubmitHandler);
+
+    function createPost(title, content) {
+      var post = document.createElement("article"),
+        titleEl = document.createElement("h2"),
+        titleLinkEl = document.createElement("a"),
+        contentEl = document.createElement("div");
+
+      post.classList.add("post");
+      titleEl.classList.add("entry-title");
+      contentEl.classList.add("entry-content");
+
+      titleLinkEl.href = "#";
+
+      titleLinkEl.innerText = title;
+      contentEl.innerHTML = content;
+
+      titleEl.appendChild(titleLinkEl);
+      post.appendChild(titleEl);
+      post.appendChild(contentEl);
+      return post;
+    }
+
+    function createPreviewPost() {
+      var previewPost = createPost("", "");
+      previewPost.id = "preview-post";
+      renderPost(previewPost);
+    }
+
+    function renderPost(post) {
+      var listEl = document.createElement("li");
+
+      listEl.appendChild(post);
+      postList.appendChild(listEl);
+    }
+
+    function clearForm() {
+      var previewPost = document.getElementById("preview-post");
+
+      titleInput.value = "";
+      contentInput.value = "";
+      previewPost.parentElement.remove();
+      isAddingPost = false;
+    }
+
+    function formSubmitHandler(event) {
+      event.preventDefault();
+
+      var title = titleInput.value,
+        content = contentInput.value,
+        post = createPost(title, content);
+
+      renderPost(post);
+      clearForm();
+
+      // newPost = genericPost.cloneNode(true);
+      // titleInput.value = "";
+      // contentInput.value = "";
+      // genericEntryTitleLink.innerText = "";
+      // genericParagraph.innerText = "";
+      // postList.appendChild(newPost);
+      // console.log(postList);
+      // newPostPreview = false;
+    }
+
+    function titleChangeHandler(event) {
+      if (event.target.value === "") {
+        return;
+      }
+
+      if (!isAddingPost) {
+        createPreviewPost();
+        isAddingPost = true;
+      }
+
+      var previewPost = document.getElementById("preview-post"),
+        titleEL = previewPost.querySelector("h2 a");
+
+      titleEL.innerText = event.target.value;
+    }
+
+    function contentChangeHandler(event) {
+      if (event.target.value === "") {
+        return;
+      }
+      // if (newPostPreview) {
+      //   newPostPreview.remove();
+      // }
+
+      if (!isAddingPost) {
+        createPreviewPost();
+        isAddingPost = true;
+      }
+
+      var previewPost = document.getElementById("preview-post"),
+        contentEl = previewPost.querySelector(".entry-content");
+
+      contentEl.innerHTML = event.target.value;
+
+      // newPostContent = content;
+      // newPostPreview = createPost(newPostTitle, newPostContent);
+      // postList.appendChild(newPostPreview);
+    }
+  </script>
+</html>
