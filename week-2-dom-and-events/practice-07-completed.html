@@ -11,7 +11,7 @@
       <h1><a href="#link-1">Esse reprehenderit</a></h1>
       <p>culpa nulla cillum do officia elit culpa dolor.</p>
     </header>
-    <hr>
+    <hr />
     <section id="main">
       <h2>Form</h2>
       <form action="" id="signup-form">
@@ -28,21 +28,19 @@
     </section>
   </body>
   <script>
-    
     // 7. Add an event handler to the form that prevents the default event, removes the form from the page and displays a thank you message with the person's name and email.
 
     // get the element with the Id main
-    var mainElement = document.getElementById('main');
+    var mainElement = document.getElementById("main");
 
     // get the element with the id signup-form
-    var signupForm = document.getElementById('signup-form');
+    var signupForm = document.getElementById("signup-form");
 
     // add a submit event listener to the signup form
-    signupForm.addEventListener( 'submit', handleSignupFormSubmit );
+    signupForm.addEventListener("submit", handleSignupFormSubmit);
 
     function handleSignupFormSubmit(event) {
-
-      // prevent the default behaivior 
+      // prevent the default behaivior
       event.preventDefault();
 
       // get the name from the events target
@@ -52,13 +50,15 @@
       var email = event.target.email.value;
 
       // create all our elements
-      var successMessage = document.createElement('div');
-      var successHeading = document.createElement('h3');
-      var message = document.createElement('p');
+      var successMessage = document.createElement("div");
+      var successHeading = document.createElement("h3");
+      var message = document.createElement("p");
 
       // set create Text nodes
-      var successHeadingText = document.createTextNode('Thank You!');
-      var messageText = document.createTextNode(`Thank you ${name}, you signed up with the email adress: ${email}.`);
+      var successHeadingText = document.createTextNode("Thank You!");
+      var messageText = document.createTextNode(
+        `Thank you ${name}, you signed up with the email address: ${email}.`
+      );
 
       // add the text nodes to their respective elements
       successHeading.appendChild(successHeadingText);
@@ -74,6 +74,5 @@
       // append our success message element to the main element
       mainElement.appendChild(successMessage);
     }
-  
   </script>
 </html>
