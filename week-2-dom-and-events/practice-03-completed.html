@@ -16,11 +16,11 @@
       <form action="">
         <p>
           <label for="name">Name</label>
-          <input type="text" name="name" value="" />
+          <input type="text" name="name" id="name" value="" />
         </p>
         <p>
           <label for="email">Email</label>
-          <input type="text" name="email" value="" />
+          <input type="text" name="email" id="email" value="" />
         </p>
         <p><input type="submit" value="Sign Up" /></p>
       </form>
@@ -30,18 +30,18 @@
     // 3. Set the text for the h2 to "Newsletter Signup," set the value for the name input field to your name, set the value for the email input field to your email.
 
     // get first h2 element of the page and select the first result
-    var h2 = document.getElementsByTagName("h2")[0];
+    var h2 = document.querySelector("h2");
     // set the innerText of the h2 to our string
     h2.innerText = "Newsletter Signup";
 
     // get Input field with the name of nameand select the first result
-    var nameInput = document.getElementsByName("name")[0];
+    var name = document.getElementById("name");
     // set the value of the input field to our string
-    nameInput.value = "John Appleseed";
+    name.value = "John Appleseed";
 
     // get Input field wiith the name of email and select the first result
-    var emalInput = document.getElementsByName("email")[0];
+    var email = document.getElementById("email");
     // set the value of the input field to our string
-    emalInput.value = "john@appleseed.com";
+    email.value = "john@appleseed.com";
   </script>
 </html>
