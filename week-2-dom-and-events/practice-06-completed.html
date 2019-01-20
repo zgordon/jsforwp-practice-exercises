@@ -49,24 +49,23 @@
     // 6. Create an event handler on all links with a class of "special" that prevents the event default and logs the text of the link and the url of the link to the console.
 
     // getting all links with the class special
-    var specialLinks = document.querySelectorAll("a.special");
+    var links = document.querySelectorAll("a.special");
 
     // loop through all the special links
-    for (var link of specialLinks) {
+    for (let link of links) {
       // add a click event listener to each of the links
       link.addEventListener("click", handleLinkClick);
     }
 
     function handleLinkClick(event) {
-      // prevent the default behavior
-      event.preventDefault();
-
       // store the event.target in a local variable
       var link = event.target;
 
+      // prevent the default behavior
+      event.preventDefault();
+
       // log the links text
       console.log("Text:", link.innerText);
-
       // log the links href
       console.log("Link:", link.href);
     }
