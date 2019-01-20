@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Practice 1</title>
+    <title>Practice 6</title>
   </head>
   <body>
     <header>
-      <h1><a href="#link-1">Esse reprehenderit</a></h1>
+      <h1><a href="#link-1" class="special">Esse reprehenderit</a></h1>
       <p>culpa nulla cillum do officia elit culpa dolor.</p>
     </header>
     <hr />
     <section id="main">
       <article class="post featured">
-        <h2 class="entry-title"><a href="#">Rfficia</a></h2>
+        <h2 class="entry-title"><a href="#" class="special">Rfficia</a></h2>
         <div class="entry-content">
           <p>Elit esse incididunt proident veniam.</p>
         </div>
@@ -25,14 +25,16 @@
           <p>Culpa nulla cillum do officia elit culpa dolor.</p>
         </div>
       </article>
-      <article class="post">
+      <article id="start-here" class="post">
         <h2 class="entry-title"><a href="#">Eiusmod</a></h2>
         <div class="entry-content">
           <p>Cillum ullamco tempor reprehenderit enim.</p>
         </div>
       </article>
       <article class="post">
-        <h2 class="entry-title"><a href="#">Reprehenderit</a></h2>
+        <h2 class="entry-title">
+          <a href="#" class="special">Reprehenderit</a>
+        </h2>
         <div class="entry-content">
           <p>Et ipsum dolor ullamco voluptate duis ipsum.</p>
         </div>
@@ -44,28 +46,6 @@
     </section>
   </body>
   <script>
-    
-    // 1. Select the following elements from the page and log them to the console: All the links on the page, the element with an id of "main," all elements with a class of "featured,"  the first element with a class of "featured."
-
-    // get all the links of the page
-    var links = document.getElementsByTagName('a');
-    console.log(links);
-
-    // get the first element with the id main
-    var main = document.getElementById('main');
-    console.log(main);
-
-    // get all elements wiith the class .featured
-    var featuredItems = document.getElementsByClassName('featured');
-    console.log(featuredItems);
-
-    // get the first element with the class featured
-    var firstFeaturedItem = document.getElementsByClassName('featured')[0];
-    console.log(firstFeaturedItem);
-
-    // alternate aproach to get the first element with the class featured
-    var alternateFirstFeaturedItem = document.querySelector('.featured');
-    console.log(alternateFirstFeaturedItem);
-
+    // 6. Create an event handler on all links with a class of "special" that prevents the event default and logs the text of the link and the url of the link to the console.
   </script>
 </html>

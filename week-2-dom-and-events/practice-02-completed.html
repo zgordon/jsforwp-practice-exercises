@@ -44,8 +44,25 @@
     </section>
   </body>
   <script>
+    // 2. Select the element with an id of "start-here."  Then select the syblings of the element, the parent of the element, the parent of the parent of the element, and the children of the element and save them as variables.  Then log them all to the console.
 
-  // 2. Select the element with an id of "start-here."  Then select the syblings of the element, the parent of the element, the parent of the parent of the element, and the children of the element and save them as variables.  Then log them all to the console.
+    var startHere = document.getElementById("start-here");
+    console.log(startHere);
 
+    // get parent with parentNode
+    var parent = startHere.parentNode;
+    console.log(parent);
+
+    // get parent with parentElement
+    var parentsParent = startHere.parentElement.parentElement;
+    console.log(parentsParent);
+
+    // get all child nodes (including textnodes)
+    var children = startHere.childNodes;
+    console.log(children);
+
+    // get all children that are Elements
+    var children = startHere.children;
+    console.log(children);
   </script>
 </html>

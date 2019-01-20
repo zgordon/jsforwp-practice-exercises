@@ -15,17 +15,27 @@
       <h2>Posts</h2>
       <ul class="posts">
         <li class="post">
-            <h2 class="entry-title"><a href="#">Aliquip</a></h2>
-            <div class="entry-content">
-              <p>Culpa nulla cillum do officia elit culpa dolor.</p>
-            </div>
+          <h2 class="entry-title"><a href="#">Aliquip</a></h2>
+          <div class="entry-content">
+            <p>Culpa nulla cillum do officia elit culpa dolor.</p>
+          </div>
         </li>
       </ul>
     </section>
   </body>
   <script>
-    
     // 5. Create a clone of the list item and append it to the end of the list.
 
+    // get the first ul element with the class of posts
+    var list = document.querySelector("ul.posts");
+
+    // get the first child of the list
+    var listItem = list.children[0];
+
+    // copy the list item deeply (meaning including all chiildren)
+    var copyListItem = listItem.cloneNode(true);
+
+    // append the copy to the end of the list
+    list.appendChild(copyListItem);
   </script>
 </html>
