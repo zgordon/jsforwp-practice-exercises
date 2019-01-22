@@ -8,6 +8,31 @@
   </head>
   <body>
     <style>
+      #overlay {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        z-index: 100;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+      #overlay img {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 200;
+        opacity: 1;
+      }
+      #overlay button.close {
+        position: absolute;
+        z-index: 300;
+        top: 10px;
+        right: 10px;
+      }
       .lightbox {
         position: relative;
       }
@@ -23,12 +48,6 @@
         margin: 0 auto;
         width: 80%;
         height: auto;
-      }
-      #close-button {
-        position: absolute;
-        z-index: 10;
-        top: 100px;
-        right: 10%;
       }
     </style>
     <header>
@@ -50,64 +69,60 @@
   <script>
     // 9. Create a simple lightbox that pops up with a full size image when any image inside of a container with a class of "lightbox" is clicked on.
 
-    // get the first element with the class lightbox
-    var lightbox = document.querySelector(".lightbox");
+    var images = document.querySelectorAll(".lightbox img");
 
-    // get all images inside the lightbox
-    var images = lightbox.getElementsByTagName("img");
-
-    // create a empty variable for our selected Image
-    var selectedImage;
-
-    // create a button element
-    var closeButton = document.createElement("button");
-
-    // create a text node for our button
-    var closeButtonText = document.createTextNode("X");
-
-    // set the id of the close button to close-button
-    closeButton.id = "close-button";
-
-    // append the text of the button to the button
-    closeButton.appendChild(closeButtonText);
-
-    // add a click event listener to the close vutton
-    closeButton.addEventListener("click", handleCloseButtonClick);
-
-    // iterate over all images and create a local variable called image
-    for (var image of images) {
-      // add a click event listener to each image
-      image.addEventListener("click", handleImageSelection);
+    for (let img of images) {
+      img.addEventListener("click", openLightbox);
     }
 
-    // create a function to handle image selection
-    function handleImageSelection(event) {
-      // prevent the defaule event behaivior
+    function openLightbox(event) {
+      var body = document.querySelector("body"),
+        overlay = createOverlay(event.target);
+
       event.preventDefault();
+      body.appendChild(overlay);
 
-      // set the selected image variable to a clone of the image the user has clicked on
-      selectedImage = event.target.cloneNode(true);
-
-      // add the class selected to the selected image
-      selectedImage.classList.add("selected");
-
-      // append the selected image to the lightbox container
-      lightbox.appendChild(selectedImage);
-
-      // append the close button to the lightbox container
-      lightbox.appendChild(closeButton);
+      // Add event listener for Escape keypress
+      document.addEventListener("keyup", function(event) {
+        if (event.key === "Escape") closeLightbox();
+      });
+      // Add event listener for clicking on overlay
+      overlay.addEventListener("click", function(event) {
+        if (event.target instanceof HTMLDivElement) {
+          closeLightbox();
+        }
+      });
     }
 
-    // create a function to handle clicking the close button
-    function handleCloseButtonClick(event) {
-      // prevent the defaule event behaivior
-      event.preventDefault();
+    function closeLightbox(event) {
+      var overlay = document.getElementById("overlay");
+      if (event) event.preventDefault();
+      if (overlay) overlay.remove();
+    }
 
-      // remove the close button
-      closeButton.remove();
+    function createOverlay(img) {
+      var overlay = document.createElement("div"),
+        image = document.createElement("img"),
+        closeButton = createCloseButton();
 
-      // remove the selected image
-      selectedImage.remove();
+      overlay.id = "overlay";
+      image.src = img.src;
+      image.alt = img.alt;
+
+      overlay.appendChild(image);
+      overlay.appendChild(closeButton);
+
+      return overlay;
+    }
+
+    function createCloseButton() {
+      var button = document.createElement("button"),
+        buttonText = document.createTextNode("Esc");
+
+      button.classList.add("close");
+      button.appendChild(buttonText);
+      button.addEventListener("click", closeLightbox);
+      return button;
     }
   </script>
 </html>
