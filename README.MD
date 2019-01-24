@@ -53,5 +53,5 @@
 6. Create an API call to a working WordPress site and get 3 images and render them to the page
 7. Create an interface that let's you enter a URL for a WordPress site in a form and when you click submit it displays the latest 10 posts from that site
 8. Extend the previous example to make a blog reader that let's you click on a post and read the content of it.  Also display the featured image if one exists.
-9. Build a simple de-coupled WordPress site with a page navigation and a blog section listing posts
+9. Build a simple de-coupled WordPress site that lists pages and posts and let's you view them without leaving or refreshing the page.
 10. Look over this list of [Open APIs](https://github.com/toddmotto/public-apis) and choose one to make an API call to and display information from
