@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Practice 5</title>
+  </head>
+  <body>
+    <header>
+      <h1>1. Create a JSON string of 3 post objects</h1>
+    </header>
+    <hr />
+    <main id="root"></main>
+  </body>
+  <script>
+    // 6. Create an API call to a working WordPress site and 
+    // get 3 images and render them to the page
+
+    // fetch the three lates media objects of the type image  
+    fetch('https://javascriptforwp.com/wp-json/wp/v2/media?per_page=3&media_type=image')
+        .then( function(response) {
+            // check if the response returned ok
+            if (response.ok) {
+
+                // return the response json
+                return response.json();
+            // handle error
+            } else {
+                throw(response);
+            }
+        }).then( function( images ) {
+            
+            // loop over the images
+            for( var image of images) {
+
+                // create a new image
+                var newImage = createImage( image.source_url, image.alt_text);
+
+                // add that image to the page
+                addToPage(newImage);
+            }
+        }).catch( function ( error ) {
+            console.log(error)
+        });
+
+    function createImage( src, alt ) {
+        // create image element
+        var image = document.createElement('img');
+
+        // set src and alt attributes 
+        image.src = src;
+        image.alt = alt;
+
+        // return the new image
+        return image;
+    }
+
+    function addToPage( element ) {
+        // select the element with the id root
+        var root = document.querySelector('#root');
+        
+        // append the passed in element to the root
+        root.appendChild(element);
+    }
+
+  </script>
+</html>

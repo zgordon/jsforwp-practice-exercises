@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Practice 7</title>
+  </head>
+  <body>
+    <header>
+      <h1>7. Enter the URL of a WordPress Site</h1>
+    </header>
+    <hr />
+    <section>
+        <form id="site-input">
+            <input type="url" name="siteUrl" placeholder="https://javascriptforwp.com" />
+            <input type="submit" />
+        </form>
+    </section>
+    <main id="root"></main>
+  </body>
+  <script>
+    // 7. Create an interface that let's you enter a URL for a WordPress 
+    // site in a form and when you click submit it displays the 
+    // latest 10 posts from that site 
+
+    // get the element with the if site-input
+    var form = document.getElementById('site-input');
+
+    // add a submit event listener to the form
+    form.addEventListener( 'submit', handleFormSubmit );
+
+    function handleFormSubmit( event ) {
+        
+        // prevent the default behavior 
+        event.preventDefault();
+        
+        // get the value of the site url input 
+        var siteUrl = event.target.siteUrl.value;
+        
+        // get the posts for the entered wp url
+        getPosts(siteUrl);
+    }
+
+    function getPosts( siteUrl ) {
+        fetch(`${siteUrl}/wp-json/wp/v2/posts?per_page=10`)
+        .then( function(response) {
+            // check if the response returned ok
+            if (response.ok) {
+
+                // return the response json
+                return response.json();
+            // handle error
+            } else {
+                throw(response);
+            }
+        }).then( function( posts ) {
+            // loop over all the posts       
+            for( var post of posts) {
+                // create an article using our createArticle function and assign it to a local variable
+                var article = createArticle( post.title.rendered, post.excerpt.rendered, post.link);
+                // add that new article to the page
+                addToPage(article);
+            }
+        }).catch( function ( error ) {
+            console.log(error)
+        });
+    }
+
+    function createArticle( title, content, link) {
+        // create the necessary elements
+        var article = document.createElement('article');
+        var heading = document.createElement('h2');
+        var headingLink = document.createElement('a');
+        var entryExcerpt = document.createElement('div');
+        var entryExcerptText = document.createElement('p');
+
+        // add classes to their respective elements
+        article.classList.add('post');
+        heading.classList.add('entry-title');
+        entryExcerpt.classList.add('entry-excerpt');
+
+        // set the href attribute
+        headingLink.href = link;
+
+        // set the innerText & innerHTML 
+        headingLink.innerText = title;
+        entryExcerptText.innerHTML = content;
+
+        // append all children to their respective parents
+        heading.appendChild(headingLink);
+        entryExcerpt.appendChild(entryExcerptText);
+        article.appendChild(heading);
+        article.appendChild(entryExcerpt);
+
+        // return the new article
+        return article;
+    }
+
+    function addToPage( element ) {
+        // select the element with the id root
+        var root = document.querySelector('#root');
+        
+        // append the passed in element to the root
+        root.appendChild(element);
+    }
+
+  </script>
+</html>
