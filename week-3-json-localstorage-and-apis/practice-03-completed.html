@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Practice 3</title>
+  </head>
+  <body>
+    <header>
+      <h1>1. Create a JSON string of 3 post objects</h1>
+    </header>
+    <hr />
+    <main id="root"></main>
+  </body>
+  <script>
+    // 3. Create a JSON string of 3 post objects and save them in local storage
+
+    var postsJson = `
+    [
+      {
+        "id": 1,
+        "title": "My awesome post",
+        "content": "My awesome content."
+      }, {
+        "id": 2,
+        "title": "My awesome seccond post",
+        "content": "My awesome content."
+      }, {
+        "id": 3,
+        "title": "My awesome third post",
+        "content": "My awesome content."
+      }
+    ]
+    `;
+    
+    // take our JSON string and store it in localStorage with the key posts
+    localStorage.setItem('posts', postsJson);
+
+  </script>
+</html>
