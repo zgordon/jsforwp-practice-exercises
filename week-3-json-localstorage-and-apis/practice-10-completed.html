@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Practice 10</title>
+    <style>
+      .hidden {
+        display: none;
+      }
+      li {
+        text-transform: capitalize;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="loading">Loading...</p>
+    <div id="root"></div>
+  </body>
+  <script>
+    // Look over this list of Open APIs [https://github.com/toddmotto/public-apis] and choose one to make an API call to and display information from
+    var apiRoot = "https://pokeapi.co/api/v2/type/",
+      siteRoot = document.getElementById("root"),
+      loadingNotice = document.getElementById("loading"),
+      fetching = true;
+
+    fetch(apiRoot)
+      .then(request => request.json())
+      .then(data => {
+        loadingNotice.classList.add("hidden");
+        renderType(data.results);
+      })
+      .catch(error => console.error(error));
+
+    function renderType(types) {
+      var h2 = document.createElement("h2"),
+        h2Text = document.createTextNode("Pokemon Types"),
+        ul = document.createElement("ul"),
+        markup = "";
+
+      for (let type of types) {
+        markup += "<li>" + type.name + "</li>";
+      }
+
+      h2.appendChild(h2Text);
+      root.appendChild(h2);
+      ul.innerHTML = markup;
+      root.appendChild(ul);
+    }
+  </script>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Practice 9</title>
+    <style>
+      #menu {
+        position: absolute;
+        float: left;
+        width: 200px;
+        border-right: 1px #ccc solid;
+        height: 100%;
+      }
+      #main {
+        margin-left: 220px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div id="menu">
+        <p id="site-name"><strong>Site Name</strong></p>
+        <div id="pages"></div>
+        <p>Posts</p>
+        <div id="posts"></div>
+      </div>
+      <div id="main"></div>
+    </div>
+  </body>
+  <script>
+    var root = document.getElementById("root"),
+      menu = document.getElementById("menu"),
+      pagesContainer = document.getElementById("pages"),
+      postsContainer = document.getElementById("posts"),
+      main = document.getElementById("main"),
+      apiRoot = "http://dev-react-explained-api.pantheonsite.io/wp-json/";
+
+    // Function for kicking off the site
+    function init() {
+      // Get the pages
+      loadContent("pages");
+      // Get the posts
+      loadContent();
+    }
+    // Calling the init function
+    init();
+
+    // Gets a collection of posts or pages
+    function loadContent(type = "posts") {
+      // Set the URL based on type of content needed
+      if (type === "posts") {
+        var url = apiRoot + "wp/v2/posts";
+      } else {
+        var url = apiRoot + "wp/v2/pages?order=asc&orderby=menu_order";
+      }
+
+      // Fetch the content
+      fetch(url)
+        .then(request => request.json())
+        .then(data => {
+          // Render a list of the content
+          renderContentList(data, type);
+        })
+        .catch(error => console.error(error));
+    }
+
+    // Get's a single post or page based on ID
+    function loadSingleContent(id, type = "posts") {
+      // Set the URL based on content type
+      if (type === "posts") {
+        var url = apiRoot + "wp/v2/posts/" + id;
+      } else {
+        var url = apiRoot + "wp/v2/pages/" + id;
+      }
+      // Fetch the content
+      fetch(url)
+        .then(request => request.json())
+        .then(data => {
+          // Render the content
+          renderSingleContent(data);
+        })
+        .catch(error => console.error(error));
+    }
+
+    // Function for rendering a list of content
+    function renderContentList(data, type = "posts") {
+      var list = document.createElement("ul"),
+        markup = "",
+        links = [];
+
+      // Create list items for each piece of content
+      for (let content of data) {
+        markup += "<li>";
+        markup +=
+          '<a href="#" data-type="' + type + '" id="' + content.id + '">';
+        markup += content.title.rendered;
+        markup += "</a>";
+        markup += "</li>";
+      }
+
+      // Assign the list items to the list
+      list.innerHTML = markup;
+
+      // Add event listeners to all the links
+      links = list.querySelectorAll("a");
+      for (let link of links) {
+        link.addEventListener("click", contenLinkHandler);
+      }
+
+      // Append the content based on type
+      if (type === "posts") {
+        postsContainer.appendChild(list);
+      } else {
+        pagesContainer.appendChild(list);
+      }
+    }
+
+    // Renders a single piece of content to the page
+    function renderSingleContent(content) {
+      var article = document.createElement("article"),
+        markup = "";
+
+      // Create the content markup
+      markup = '<h1 class="entry-title">';
+      markup += content.title.rendered;
+      markup += "</h1>";
+      markup += '<div class="entry-excerpt">';
+      markup += content.content.rendered;
+      markup += "</div>";
+
+      // Apply the markup to the article
+      article.innerHTML = markup;
+
+      // Clear the main site area
+      main.innerHTML = "";
+      // Add the content to the main area
+      main.appendChild(article);
+    }
+
+    // Event handler for clicking on content
+    function contenLinkHandler(event) {
+      // Get the ID and type of content
+      var id = event.target.id,
+        type = event.target.dataset.type;
+
+      // Prevent default behavior
+      event.preventDefault();
+      // Get the content
+      loadSingleContent(id, type);
+    }
+  </script>
+</html>
