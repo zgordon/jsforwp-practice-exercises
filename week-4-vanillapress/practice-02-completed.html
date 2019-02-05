@@ -26,5 +26,21 @@
     // </article>
     // ```
 
+    function createPost( title, content, slug ) {
+        var post = document.createElement('article');
+        post.classList.add('post');
+
+        post.innerHTML = `
+            <h2 class="entry-title"><a href="#${slug}">${title}</a></h2>
+            <div class="entry-content">
+                <p>${content}</p>
+            </div>  
+        `;
+
+        document.getElementById('root').appendChild(post);
+    }
+
+    createPost( 'My Title', 'My Content', 'myslug' )
+    
   </script>
 </html>

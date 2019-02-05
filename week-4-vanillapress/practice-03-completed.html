@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Practice 3</title>
+  </head>
+  <body>
+    <header>
+      <h1>Helper Functions</h1>
+      <p>creating a post with a helper function.</p>
+    </header>
+    <hr />
+    <main id="root"></main>
+  </body>
+  <script>
+    // 3. Write an init() function that gets posts from JSON and saves them to local store.  Then get's content from local store and renders to the page.  Use the functions created in #1 and #2.
+
+    var posts = `
+    [
+      {
+        "slug": 1,
+        "title": "My awesome post",
+        "content": "My awesome content."
+      }, {
+        "slug": 1,
+        "title": "My awesome post",
+        "content": "My awesome content."
+      }, {
+        "slug": 1,
+        "title": "My awesome post",
+        "content": "My awesome content."
+      }
+    ]
+    `;
+
+    function getLocalStore( index ) {
+        var item = localStorage.getItem( index );
+        var itemObject = JSON.parse( item );
+        return itemObject;
+    }
+
+    function updateLocalStore( index, newValue ) {
+        var stringyfiedValue = JSON.stringify( newValue );
+        localStorage.setItem( index, stringyfiedValue );
+    }
+
+    function createPost( title, content, slug ) {
+        var post = document.createElement('article');
+        post.classList.add('post');
+
+        post.innerHTML = `
+            <h2 class="entry-title"><a href="#${slug}">${title}</a></h2>
+            <div class="entry-content">
+                <p>${content}</p>
+            </div>  
+        `;
+
+        document.getElementById('root').appendChild(post);
+    }
+
+    function init() {
+        updateLocalStore( 'posts', JSON.parse(posts));
+        var localPosts = getLocalStore( 'posts' );
+
+        for (var post of localPosts) {
+            createPost(post.title, post.content, post.slug)
+        }
+    }
+
+    init();
+
+  </script>
+</html>
