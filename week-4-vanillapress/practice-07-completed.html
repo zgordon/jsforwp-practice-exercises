@@ -36,10 +36,8 @@
     `;
 
     function init() {
-
-        var homeLink = document.getElementById('home-link');
-        homeLink.addEventListener('click', handleLinkClick);
         createList();
+        listenForHashChange();
     }
 
     function createPage( title, content, slug, single = false ) {
@@ -62,15 +60,19 @@
 
     }
 
-    function handleLinkClick( event ) {
-        event.preventDefault();
+    function listenForHashChange() {
+        window.addEventListener( 'hashchange', handleHashChange);
+    }
 
-        var pageHref = event.target.getAttribute('href');
-        var pageSlug = pageHref.slice(1);
+
+    function handleHashChange( event ) {
+        event.preventDefault();
+        var pageSlug = location.hash;
+        var withoutHash = pageSlug.slice(1);
 
         var pages = JSON.parse( pagesJson );
 
-        var selectedPage = pages.filter( page => page.slug == pageSlug)[0];
+        var selectedPage = pages.filter( page => page.slug == withoutHash)[0];
 
         if (selectedPage) {
 
@@ -97,7 +99,6 @@
         var pages = JSON.parse( pagesJson );
         for (var page of pages) {
             var newPage = createPage(page.title, page.content, page.slug);
-            newPage.addEventListener( 'click', handleLinkClick );
             pageList.appendChild( newPage );
         }
 
