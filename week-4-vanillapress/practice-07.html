@@ -42,11 +42,21 @@
         createList();
     }
 
-    function createPage( title, content, slug ) {
-        var page = document.createElement('li');
-        page.classList.add('page');
+    function createPage( title, content, slug, single = false ) {
+        if (single) {
+            var page = document.createElement('article');
 
-        page.innerHTML = `<a href="#${slug}">${title}</a>`;
+            page.innerHTML = `
+                <h2 class="entry-title">${title}</h2>
+                <div class="entry-content">
+                    <p>${content}</p>
+                </div>  
+            `;
+        } else {
+            var page = document.createElement('li');
+
+            page.innerHTML = `<a href="#${slug}">${title}</a>`;
+        }
 
         return page;
 
@@ -60,20 +70,21 @@
 
         var pages = JSON.parse( pagesJson );
 
-        var selectedPage = pages.filter( page => page.slug == pageSlug);
+        var selectedPage = pages.filter( page => page.slug == pageSlug)[0];
 
-        if (selectedPage.length < 1) {
+        if (selectedPage) {
 
-            clearSite();
-
-            createList();
-
-        } else {
-            var page = createSinglePage( selectedPage[0] );
+            var page = createPage( selectedPage.title, selectedPage.content, selectedPage.slug, true );
 
             clearSite();
 
             addToSite(page);
+
+        } else {
+            
+            clearSite();
+
+            createList();
         }
 
         
@@ -100,19 +111,6 @@
 
     function clearSite() {
         document.getElementById('root').innerHTML = "";
-    }
-
-    function createSinglePage( page ) {
-        var newPage = document.createElement('article');
-        newPage.classList.add('page');
-
-        newPage.innerHTML = `
-            <h2 class="entry-title">${page.title}</h2>
-            <div class="entry-content">
-                <p>${page.content}</p>
-            </div>  
-        `;
-        return newPage;
     }
 
     init();
