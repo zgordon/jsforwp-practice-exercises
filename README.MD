@@ -55,3 +55,22 @@
 8. Extend the previous example to make a blog reader that let's you click on a post and read the content of it.  Also display the featured image if one exists.
 9. Build a simple de-coupled WordPress site that lists pages and posts and let's you view them without leaving or refreshing the page.
 10. Look over this list of [Open APIs](https://github.com/toddmotto/public-apis) and choose one to make an API call to and display information from
+
+## Week 4
+1. Use var let const 
+2. Test var let const (const obj = { id: 1} can still do obj.id = 2)
+3. Applying freeze to an object
+4. Arrow function - full function
+```
+DELETE
+const getPost = (postId) => {
+  var post = {id: postId}
+  return post;
+}
+```
+5. Arrow function - shorthand that has implecit return and shorthand for variable
+6. Filter example
+7. Map example
+8. Map & Filter example
+9. Template String
+10. Loop through 3 JSON posts and render them to the page (like Week 3 exercise 4)
