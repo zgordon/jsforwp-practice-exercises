@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Practice 1</title>
+  </head>
+  <body>
+    <header>
+      <h1>Helper Functions</h1>
+      <p>for working with Local Storage.</p>
+    </header>
+    <hr />
+
+  </body>
+  <script>
+    // 1. Write a two helper functions getLocalStore() and updateLocalStore() that can take an array or object, stringify it and save to local storage as well as pull content out of local storage and parse it.
+
+    function getLocalStore( index ) {
+        var item = localStorage.getItem( index );
+        var itemObject = JSON.parse( item );
+        return itemObject;
+    }
+
+    function updateLocalStore( index, newValue ) {
+        var stringyfiedValue = JSON.stringify( newValue );
+        localStorage.setItem( index, stringyfiedValue );
+    }
+    
+  </script>
+</html>
