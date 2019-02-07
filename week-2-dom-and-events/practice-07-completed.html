@@ -40,7 +40,7 @@
     signupForm.addEventListener("submit", handleSignupFormSubmit);
 
     function handleSignupFormSubmit(event) {
-      // prevent the default behaivior
+      // prevent the default behavior
       event.preventDefault();
 
       // get the name from the events target
@@ -49,6 +49,18 @@
       // get the email from the events target
       var email = event.target.email.value;
 
+      // call createSuccessMessage function  
+      var successMessage = createSuccessMessage(name, email);
+
+      // remove the form from the page
+      signupForm.remove();
+
+      // append our success message element to the main element
+      mainElement.appendChild(successMessage);
+      
+    }
+
+    function createSuccessMessage(name, email) {
       // create all our elements
       var successMessage = document.createElement("div");
       var successHeading = document.createElement("h3");
@@ -68,11 +80,7 @@
       successMessage.appendChild(successHeading);
       successMessage.appendChild(message);
 
-      // remove the form from the page
-      signupForm.remove();
-
-      // append our success message element to the main element
-      mainElement.appendChild(successMessage);
+      return successMessage;
     }
   </script>
 </html>

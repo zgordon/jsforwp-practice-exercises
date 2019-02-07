@@ -57,10 +57,9 @@
 10. Look over this list of [Open APIs](https://github.com/toddmotto/public-apis) and choose one to make an API call to and display information from
 
 ## Week 4
-1. Use var let const 
-2. Test var let const (const obj = { id: 1} can still do obj.id = 2)
-3. Applying freeze to an object
-4. Arrow function - full function
+1. Use var let const += Test var let const (const obj = { id: 1} can still do obj.id = 2)
+2. Applying freeze to an object
+3. Arrow function - full function
 ```
 DELETE
 const getPost = (postId) => {
@@ -68,9 +67,10 @@ const getPost = (postId) => {
   return post;
 }
 ```
-5. Arrow function - shorthand that has implecit return and shorthand for variable
-6. Filter example
-7. Map example
-8. Map & Filter example
-9. Template String
-10. Loop through 3 JSON posts and render them to the page (like Week 3 exercise 4)
+4. Arrow function - shorthand that has implecit return and shorthand for variable
+5. Filter example
+6. Map example
+7. Map & Filter example
+8. Template String
+9. Loop through 3 JSON posts and render them to the page (like Week 3 exercise 4)
+10. Add event listeners to posts in example above and on click render the full post (with a back button).  Use this in event handler instead of event.target

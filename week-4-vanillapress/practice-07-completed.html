@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Practice 6</title>
+  </head>
+  <body>
+    <header>
+      <h1><a href="#" id="home-link">List of Pages</a></h1>
+    </header>
+    <hr />
+    <main id="root"></main>
+  </body>
+  <script>
+    // 7 Modify the navigation menu so that when you click 
+    // on a link the entire post is displayed.
+
+    var pagesJson = `
+    [
+      {
+        "slug": 1,
+        "title": "My awesome page",
+        "content": "My awesome content."
+      }, {
+        "slug": 2,
+        "title": "My awesome seccond page",
+        "content": "My awesome content."
+      }, {
+        "slug": 3,
+        "title": "My awesome third page",
+        "content": "My awesome content."
+      }
+    ]
+    `;
+
+    function init() {
+        createList();
+        listenForHashChange();
+    }
+
+    function createPage( title, content, slug, single = false ) {
+        if (single) {
+            var page = document.createElement('article');
+
+            page.innerHTML = `
+                <h2 class="entry-title">${title}</h2>
+                <div class="entry-content">
+                    <p>${content}</p>
+                </div>  
+            `;
+        } else {
+            var page = document.createElement('li');
+
+            page.innerHTML = `<a href="#${slug}">${title}</a>`;
+        }
+
+        return page;
+
+    }
+
+    function listenForHashChange() {
+        window.addEventListener( 'hashchange', handleHashChange);
+    }
+
+
+    function handleHashChange( event ) {
+        event.preventDefault();
+        var pageSlug = location.hash;
+        var withoutHash = pageSlug.slice(1);
+
+        var pages = JSON.parse( pagesJson );
+
+        var selectedPage = pages.filter( page => page.slug == withoutHash)[0];
+
+        if (selectedPage) {
+
+            var page = createPage( selectedPage.title, selectedPage.content, selectedPage.slug, true );
+
+            clearSite();
+
+            addToSite(page);
+
+        } else {
+            
+            clearSite();
+
+            createList();
+        }
+
+        
+
+    }
+
+    function createList() {
+
+        var pageList = document.createElement('ul');
+        var pages = JSON.parse( pagesJson );
+        for (var page of pages) {
+            var newPage = createPage(page.title, page.content, page.slug);
+            pageList.appendChild( newPage );
+        }
+
+        document.getElementById( 'root' ).appendChild( pageList );
+
+    }
+
+    function addToSite( element ) {
+        document.getElementById('root').appendChild(element);
+    }
+
+    function clearSite() {
+        document.getElementById('root').innerHTML = "";
+    }
+
+    init();
+
+  </script>
+</html>

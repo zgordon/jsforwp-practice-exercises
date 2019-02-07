@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Practice 2</title>
+  </head>
+  <body>
+    <header>
+      <h1>Helper Functions</h1>
+      <p>creating a post with a helper function.</p>
+    </header>
+    <hr />
+    <main id="root"></main>
+  </body>
+  <script>
+    // 2. Write a helper function that renders posts to the
+    // page using the following markup:
+    // ```
+    // <article class="post">
+    //   <h2 class="entry-title"><a href="#slug">Title</a></h2>
+    //   <div class="entry-content">
+    //     <p>Content here...</p>
+    //   </div>  
+    // </article>
+    // ```
+
+    function createPost( title, content, slug ) {
+        var post = document.createElement('article');
+        post.classList.add('post');
+
+        post.innerHTML = `
+            <h2 class="entry-title"><a href="#${slug}">${title}</a></h2>
+            <div class="entry-content">
+                <p>${content}</p>
+            </div>  
+        `;
+
+        document.getElementById('root').appendChild(post);
+    }
+
+    createPost( 'My Title', 'My Content', 'myslug' )
+    
+  </script>
+</html>
