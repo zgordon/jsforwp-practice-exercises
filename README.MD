@@ -57,10 +57,33 @@
 10. Look over this list of [Open APIs](https://github.com/toddmotto/public-apis) and choose one to make an API call to and display information from
 
 ## Week 4
+
+1. Write a two helper functions getLocalStore() and updateLocalStore() that can take an array or object, stringify it and save to local storage as well as pull content out of local storage and parse it.
+2. Write a helper function that renders posts to the page using the following markup:
+```html
+<article class="post">
+  <h2 class="entry-title"><a href="#slug">Title</a></h2>
+  <div class="entry-content">
+    <p>Content here...</p>
+  </div>  
+</article>
+```
+3. Write an init() function that gets posts from JSON and saves them to local store.  Then get's content from local store and renders to the page.  Use the functions created in #1 and #2.
+4. Grab the collection of pages from JSON and create a function that returns an unordered list of the pages.
+5. Modify the list of pages to include a slug like the following that logs out the link when it is clicked
+```html
+<li><a href="#1">Post #1</a></li>
+<li><a href="#2">Post #2</a></li>
+```
+6. When you click on the link in the navigation list from #5, find the corresponding post from the list of posts from the JSON list and log it to the screen.
+7. Modify the navigation menu so that when you click on a link the entire post is displayed.
+
+# Week 5
+
 1. Use var let const += Test var let const (const obj = { id: 1} can still do obj.id = 2)
 2. Applying freeze to an object
 3. Arrow function - full function
-```
+```js
 DELETE
 const getPost = (postId) => {
   var post = {id: postId}
@@ -70,7 +93,7 @@ const getPost = (postId) => {
 4. Arrow function - shorthand that has implecit return and shorthand for variable
 5. Filter example
 6. Map example
-7. Map & Filter example
+7. Filter example
 8. Template String
 9. Loop through 3 JSON posts and render them to the page (like Week 3 exercise 4)
-10. Add event listeners to posts in example above and on click render the full post (with a back button).  Use this in event handler instead of event.target
+10. Add event listeners to posts in example above and on click render the full post (with a back button). Use this in event handler instead of event.target
