@@ -19,7 +19,7 @@
 2. Select the element with an id of "start-here."  Then select the syblings of the element, the parent of the element, the parent of the parent of the element, and the children of the element and save them as variables.  Then log them all to the console.
 3. Set the text for the h2 to "Newsletter Signup," set the value for the name input field to your name, set the value for the email input field to your email.
 4. Create the following markup using createElement() and createTextNode() and then append it to the page inside of the element with id of "posts."
-```
+```html
 <article class="post">
   <h2 class="entry-title"><a href="#">Title</a></h2>
   <div class="entry-excerpt">
@@ -39,7 +39,7 @@
 
 1. Create a JSON string of 3 post objects.
 2. Create a JSON string of 3 post objects then render them to the page with the following markup
-```
+```html
 <article class="post">
   <h2 class="entry-title"><a href="#">Title</a></h2>
   <div class="entry-excerpt">
