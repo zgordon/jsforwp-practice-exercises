@@ -19,7 +19,7 @@
 2. Select the element with an id of "start-here."  Then select the syblings of the element, the parent of the element, the parent of the parent of the element, and the children of the element and save them as variables.  Then log them all to the console.
 3. Set the text for the h2 to "Newsletter Signup," set the value for the name input field to your name, set the value for the email input field to your email.
 4. Create the following markup using createElement() and createTextNode() and then append it to the page inside of the element with id of "posts."
-```
+```html
 <article class="post">
   <h2 class="entry-title"><a href="#">Title</a></h2>
   <div class="entry-excerpt">
@@ -39,7 +39,7 @@
 
 1. Create a JSON string of 3 post objects.
 2. Create a JSON string of 3 post objects then render them to the page with the following markup
-```
+```html
 <article class="post">
   <h2 class="entry-title"><a href="#">Title</a></h2>
   <div class="entry-excerpt">
@@ -93,7 +93,6 @@ const getPost = (postId) => {
 4. Arrow function - shorthand that has implecit return and shorthand for variable
 5. Filter example
 6. Map example
-7. Filter example
-8. Template String
-9. Loop through 3 JSON posts and render them to the page (like Week 3 exercise 4)
-10. Add event listeners to posts in example above and on click render the full post (with a back button). Use this in event handler instead of event.target
+7. Template String
+8. Loop through 3 JSON posts and render them to the page (like Week 3 exercise 4)
+9.  Add event listeners to posts in example above and on click render the full post (with a back button). Use this in event handler instead of event.target

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Practice 2</title>
+  </head>
+  <body>
+    <header>
+      <h1>Freezing an Object</h1>
+    </header>
+    <hr />
+    <main id="root"></main>
+  </body>
+  <script>
+    // 2. Applying freeze to an object
+
+    const person = {
+      name: "Draco",
+      sirname: "Malfoy",
+    }
+
+    console.log( "Initial", person );
+
+    person.name = "Luna";
+    person.sirname = "Lovegood"
+
+    console.log( "Altered", person );
+
+    Object.freeze(person);
+
+    console.log( "Frozen", person );
+
+    // doesn't work
+    // person.name = "Bellatrix";
+    // console.log( "Altered after freeze", person );
+    console.warn( "Altered after freeze", "TypeError: Attempted to assign to readonly property." );
+
+
+  </script>
+</html>
