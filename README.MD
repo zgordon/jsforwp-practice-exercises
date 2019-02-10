@@ -96,3 +96,4 @@ const getPost = (postId) => {
 7. Template String
 8. Loop through 3 JSON posts and render them to the page (like Week 3 exercise 4)
 9.  Add event listeners to posts in example above and on click render the full post (with a back button). Use this in event handler instead of event.target
+
