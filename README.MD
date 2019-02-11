@@ -78,7 +78,7 @@
 <li><a href="#2">Post #2</a></li>
 ```
 6. When you click on the link in the navigation list from #5, find the corresponding page from the list of pages from the JSON list and log it to the screen.
-7. **Modify the navigation menu from #6 so that when you click on a link the entire post is displayed.**
+7. **Modify the navigation menu from #6 so that when you click on a link the entire page is displayed.**
 
 # Week 5
 
