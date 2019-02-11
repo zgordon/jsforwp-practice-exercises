@@ -71,7 +71,7 @@
 </article>
 ```
 3. Write an init() function that gets posts from JSON and saves them to local store.  Then it should get content from local store and render to the page.  Use the functions created in #1 and #2.
-4. **Grab the collection of pages from JSON and create a function that returns an unordered list of the pages.**
+4. **Create a JSON string of 3 page objects that include an id, slug, title and content. Grab the collection of pages from JSON and create a function that returns an unordered list of the pages.**
 5. Modify the list of pages to include a slug like the following that logs out the link when it is clicked
 ```html
 <li><a href="#1">Post #1</a></li>
