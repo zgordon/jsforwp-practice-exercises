@@ -14,38 +14,38 @@
     <main id="root"></main>
   </body>
   <script>
-    // 3. Arrow function - full function
+    // 3. Convert this function to the fat arrow function syntax.
+    //  function getPost(postIndex) {
+    //    return posts[postIndex];
+    //  }
 
     const posts = [
       {
         id: 1,
         title: "My Post",
-        content: "My Content",
+        content: "My Content"
       },
       {
         id: 2,
         title: "My seccond Post",
-        content: "My Content",
+        content: "My Content"
       },
       {
         id: 3,
         title: "My third Post",
-        content: "My Content",
+        content: "My Content"
       },
       {
         id: 4,
         title: "My fourth Post",
-        content: "My Content",
+        content: "My Content"
       }
     ];
 
-    const getPost = (postIndex) => {
+    const getPost = postIndex => {
       return posts[postIndex];
-    }
+    };
 
-    console.log(
-      getPost(2)
-    );
-
+    console.log(getPost(2));
   </script>
 </html>

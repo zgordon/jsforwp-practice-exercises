@@ -14,29 +14,30 @@
     <main id="root"></main>
   </body>
   <script>
-    // 2. Applying freeze to an object
+    // 2. Take an object you created and make it immutable.
 
     const person = {
       name: "Draco",
-      sirname: "Malfoy",
-    }
+      sirname: "Malfoy"
+    };
 
-    console.log( "Initial", person );
+    console.log("Initial", person);
 
     person.name = "Luna";
-    person.sirname = "Lovegood"
+    person.sirname = "Lovegood";
 
-    console.log( "Altered", person );
+    console.log("Altered", person);
 
     Object.freeze(person);
 
-    console.log( "Frozen", person );
+    console.log("Frozen", person);
 
     // doesn't work
     // person.name = "Bellatrix";
     // console.log( "Altered after freeze", person );
-    console.warn( "Altered after freeze", "TypeError: Attempted to assign to readonly property." );
-
-
+    console.warn(
+      "Altered after freeze",
+      "TypeError: Attempted to assign to readonly property."
+    );
   </script>
 </html>

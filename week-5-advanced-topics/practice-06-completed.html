@@ -14,38 +14,37 @@
     <main id="root"></main>
   </body>
   <script>
-    // 6. Map over the posts and console.log their id's 
+    // 6. Map over all posts and log their id.
 
     const posts = [
       {
         id: 1,
         title: "My Post",
-        content: "My Content",
+        content: "My Content"
       },
       {
         id: 2,
         title: "My seccond Post",
-        content: "My Content",
+        content: "My Content"
       },
       {
         id: 3,
         title: "My third Post",
-        content: "My Content",
+        content: "My Content"
       },
       {
         id: 4,
         title: "My fourth Post",
-        content: "My Content",
+        content: "My Content"
       }
     ];
 
     // shorthand
-    posts.map( post => console.log(post.id) );
+    posts.map(post => console.log(post.id));
 
     // full arrow function
-    posts.map( (post) => {
-      console.log(post.id) 
+    posts.map(post => {
+      console.log(post.id);
     });
-  
   </script>
 </html>
