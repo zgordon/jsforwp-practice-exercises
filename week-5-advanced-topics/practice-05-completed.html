@@ -14,34 +14,33 @@
     <main id="root"></main>
   </body>
   <script>
-    // Filter the posts for the the one having the post id of 3
+    // Write use `.filter` to find all posts with a slug shorter that 10 characters.
 
     const posts = [
       {
         id: 1,
         title: "My Post",
-        content: "My Content",
+        content: "My Content"
       },
       {
         id: 2,
         title: "My seccond Post",
-        content: "My Content",
+        content: "My Content"
       },
       {
         id: 3,
         title: "My third Post",
-        content: "My Content",
+        content: "My Content"
       },
       {
         id: 4,
         title: "My fourth Post",
-        content: "My Content",
+        content: "My Content"
       }
     ];
 
-    const filteredPosts = posts.filter( post => post.id == 3 );
+    const filteredPosts = posts.filter(post => post.title.length < 10);
 
-    console.log( filteredPosts );
-
+    console.log(filteredPosts);
   </script>
 </html>
