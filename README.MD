@@ -85,18 +85,18 @@
 
 # Week 5
 
-1. Go ahead and test `var` `let` and `const` to their core.
-2. Take an object you created and make it immutable.
-3. Convert this function to the fat arrow function syntax.
+1. Create variables with `var` `let` and `const` and test their scope and ability to be re-assigned or changed.
+2. Create an object using const and make it immutable with freeze.
+3. Convert the following function to an arrow function.
 
    ```js
    function getPost(postIndex) {
      return posts[postIndex];
    }
    ```
-4. Now convert the fat arrow function from exercise 3 and simplify it as much as possible.
-5. Write use `.filter` to find all posts with a slug shorter that 10 characters.
-6. Map over all posts and log their id.
-7. Use Template Strings to use multiple variables inside a string.
-8. Loop through 3 JSON posts and render them to the page (like Week 3 exercise 4)
-9. Add event listeners to posts in example above and on click render the full post (with a back button). Use this in event handler instead of event.target
+4. Simplify the arrow function from exercise #3 as much as possible.
+5. Use `.filter` to find all posts with a title longer that 10 characters.
+6. Use `.map()` to iterate over all the posts and log their title.
+7. Use a template literal (template string) to use multiple variables inside a string.
+8. Loop through 3 JSON posts and render them to the page (like Week 3 exercise 4) but using `.map()`
+9. Add event listeners to posts to exercise #8 and on click render the full post (with a back button). Use `this` in event handler instead of event.target

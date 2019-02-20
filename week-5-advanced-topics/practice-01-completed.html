@@ -14,136 +14,134 @@
     <main id="root"></main>
   </body>
   <script>
-    // 1. Use and test var, let & const.
-    // - create a variable with var, let 6 const
-    // - try changing the value of the variable for each of them
-    // - try assigning an object to a variable with var, let & const
-    // - try changing the value of a property of the object for each of the variabels
+    // Create variables with `var` `let` and `const` and test their scope and ability to be re-assigned or changed.
 
     // String
     console.group("String using var");
-      // Creating the Variable using ver
-      var string1 = "Harry";
-      console.log('Initial:',string1);
+    // Creating the Variable using ver
+    var string1 = "Harry";
+    console.log("Initial:", string1);
 
-      // Overriding the variable
-      string1 = "Tom";
-      console.log('Altered:',string1);
+    // Overriding the variable
+    string1 = "Tom";
+    console.log("Altered:", string1);
     console.groupEnd();
 
     console.group("String using let");
-      // Creating the Variable using let
-      let string2 = "Harry";
-      console.log('Initial:',string2);
+    // Creating the Variable using let
+    let string2 = "Harry";
+    console.log("Initial:", string2);
 
-      // Overriding the variable  
-      string2 = "Tom";
-      console.log('Altered:',string2);
+    // Overriding the variable
+    string2 = "Tom";
+    console.log("Altered:", string2);
     console.groupEnd();
 
     console.group("String using const");
-      const string3 = "Harry";
-      console.log('Initial:',string3);
+    const string3 = "Harry";
+    console.log("Initial:", string3);
 
-      // doesn't work
-      // string3 = "Tom";
-      // console.log('Altered:',string3);
-      console.warn('Altered:', "TypeError: Attempted to assign to readonly property.");
+    // doesn't work
+    // string3 = "Tom";
+    // console.log('Altered:',string3);
+    console.warn(
+      "Altered:",
+      "TypeError: Attempted to assign to readonly property."
+    );
     console.groupEnd();
 
     // Numbers
     console.group("Number using var");
-      var number1 = 7;
-      console.log('Initial:',number1);
+    var number1 = 7;
+    console.log("Initial:", number1);
 
-      number1 = 2;
-      console.log('Altered:', number1);
+    number1 = 2;
+    console.log("Altered:", number1);
     console.groupEnd();
 
     console.group("Number using let");
-      let number2 = 7;
-      console.log('Initial:',number2);
+    let number2 = 7;
+    console.log("Initial:", number2);
 
-      number2 = 2;
-      console.log('Altered:', number2);
+    number2 = 2;
+    console.log("Altered:", number2);
     console.groupEnd();
 
     console.group("Number using const");
-      const number3 = 7;
-      console.log('Initial:',number3);
+    const number3 = 7;
+    console.log("Initial:", number3);
 
-      // doesn't work
-      // number3 = 2;
-      // console.log('Altered:', number3);
-      console.warn('Altered:', "TypeError: Attempted to assign to readonly property.");
+    // doesn't work
+    // number3 = 2;
+    // console.log('Altered:', number3);
+    console.warn(
+      "Altered:",
+      "TypeError: Attempted to assign to readonly property."
+    );
     console.groupEnd();
-
 
     // Bolean
     console.group("Bolean using var");
-      var bolean1 = true;
-      console.log('Initial:', bolean1);
+    var bolean1 = true;
+    console.log("Initial:", bolean1);
 
-      bolean1 = false;
-      console.log('Altered:', bolean1);
+    bolean1 = false;
+    console.log("Altered:", bolean1);
     console.groupEnd();
 
     console.group("Bolean using let");
-      let bolean2 = true;
-      console.log('Initial:', bolean2);
+    let bolean2 = true;
+    console.log("Initial:", bolean2);
 
-      bolean2 = false;
-      console.log('Altered:', bolean2);
+    bolean2 = false;
+    console.log("Altered:", bolean2);
     console.groupEnd();
 
     console.group("Bolean using const");
-      const bolean3 = true;
-      console.log('Initial:', bolean3);
+    const bolean3 = true;
+    console.log("Initial:", bolean3);
 
-      // doesn't work
-      // bolean3 = false;
-      // console.log('Altered:', bolean3);
-      console.warn('Altered:', "TypeError: Attempted to assign to readonly property.");
+    // doesn't work
+    // bolean3 = false;
+    // console.log('Altered:', bolean3);
+    console.warn(
+      "Altered:",
+      "TypeError: Attempted to assign to readonly property."
+    );
     console.groupEnd();
 
-
-    // Objects 
+    // Objects
     console.group("Objects using var");
-      var person1 = {
-        name: "Hermione",
-        sirname: "Granger",
-      };
-      console.log('Initial:',person1);
+    var person1 = {
+      name: "Hermione",
+      sirname: "Granger"
+    };
+    console.log("Initial:", person1);
 
-      person1.name = "Ronald";
-      console.log('Altered:',person1);
+    person1.name = "Ronald";
+    console.log("Altered:", person1);
     console.groupEnd();
 
     console.group("Objects using let");
-      let person2 = {
-        name: "Hermione",
-        sirname: "Granger",
-      };
-      console.log('Initial:',person2);
+    let person2 = {
+      name: "Hermione",
+      sirname: "Granger"
+    };
+    console.log("Initial:", person2);
 
-      person2.name = "Ronald";
-      console.log('Altered:',person2);
+    person2.name = "Ronald";
+    console.log("Altered:", person2);
     console.groupEnd();
 
     console.group("Objects using const");
-      const person3 = {
-        name: "Hermione",
-        sirname: "Granger",
-      };
-      console.log('Initial:',person3);
+    const person3 = {
+      name: "Hermione",
+      sirname: "Granger"
+    };
+    console.log("Initial:", person3);
 
-      person3.name = "Ronald";
-      console.log('Altered:',person3);
+    person3.name = "Ronald";
+    console.log("Altered:", person3);
     console.groupEnd();
-
-
-
-
-
   </script>
 </html>

@@ -14,7 +14,7 @@
     <div id="root"></div>
   </body>
   <script>
-    // Add event listeners to posts in example above and on click render the full post (with a back button). Use this in event handler instead of event.target
+    // Add event listeners to posts to exercise #8 and on click render the full post (with a back button). Use `this` in event handler instead of event.target
 
     var postsJson = `
     [
@@ -50,10 +50,9 @@
       // clearing the page
       clearPage();
 
-      // creatting our post by passting the post we got from this and adding it to the page 
+      // creatting our post by passting the post we got from this and adding it to the page
       addToPage(createArticle(this, true));
-
-    }
+    };
 
     function createArticle(post, isSingle = false) {
       // create the necessary elements
@@ -72,7 +71,7 @@
       headingLink.href = `#${post.id}`;
 
       // adding the eventListener and binding the post to it
-      headingLink.addEventListener( 'click', handleLinkClick.bind(post) );
+      headingLink.addEventListener("click", handleLinkClick.bind(post));
 
       // set the innerText & innerHTML
       headingLink.innerText = post.title;
@@ -99,7 +98,6 @@
     function clearPage() {
       const root = document.querySelector("#root");
       root.innerHTML = "";
-
     }
 
     function addToPage(element) {

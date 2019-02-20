@@ -14,7 +14,7 @@
     <main id="root"></main>
   </body>
   <script>
-    // Write use `.filter` to find all posts with a slug shorter that 10 characters.
+    // Use `.filter` to find all posts with a title longer that 10 characters.
 
     const posts = [
       {
@@ -24,7 +24,7 @@
       },
       {
         id: 2,
-        title: "My seccond Post",
+        title: "My second Post",
         content: "My Content"
       },
       {
@@ -39,7 +39,7 @@
       }
     ];
 
-    const filteredPosts = posts.filter(post => post.title.length < 10);
+    const filteredPosts = posts.filter(post => post.title.length > 10);
 
     console.log(filteredPosts);
   </script>

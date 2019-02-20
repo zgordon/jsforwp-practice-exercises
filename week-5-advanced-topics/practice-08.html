@@ -14,7 +14,7 @@
     <main id="root"></main>
   </body>
   <script>
-    // Loop through 3 JSON posts and render them to the page (like Week 3 exercise 4) (Take your completed exercise from week 3 or take this as a starting point )
+    // Loop through 3 JSON posts and render them to the page (like Week 3 exercise 4) but using `.map()`
 
     var postsJson = `
     [
@@ -35,58 +35,56 @@
     `;
 
     // take our JSON string and store it in localStorage with the key posts
-    localStorage.setItem('posts', postsJson);
+    localStorage.setItem("posts", postsJson);
 
     // take our JSON string and store it in localStorage with the key posts
-    var posts = JSON.parse(localStorage.getItem('posts'));
+    var posts = JSON.parse(localStorage.getItem("posts"));
 
-  
-    function createArticle( title, content, link) {
-        // create the necessary elements
-        var article = document.createElement('article');
-        var heading = document.createElement('h2');
-        var headingLink = document.createElement('a');
-        var entryExcerpt = document.createElement('div');
-        var entryExcerptText = document.createElement('p');
+    function createArticle(title, content, link) {
+      // create the necessary elements
+      var article = document.createElement("article");
+      var heading = document.createElement("h2");
+      var headingLink = document.createElement("a");
+      var entryExcerpt = document.createElement("div");
+      var entryExcerptText = document.createElement("p");
 
-        // add classes to their respective elements
-        article.classList.add('post');
-        heading.classList.add('entry-title');
-        entryExcerpt.classList.add('entry-excerpt');
+      // add classes to their respective elements
+      article.classList.add("post");
+      heading.classList.add("entry-title");
+      entryExcerpt.classList.add("entry-excerpt");
 
-        // set the href attribute
-        headingLink.href = link;
+      // set the href attribute
+      headingLink.href = link;
 
-        // set the innerText & innerHTML 
-        headingLink.innerText = title;
-        entryExcerptText.innerHTML = content;
+      // set the innerText & innerHTML
+      headingLink.innerText = title;
+      entryExcerptText.innerHTML = content;
 
-        // append all children to their respective parents
-        heading.appendChild(headingLink);
-        entryExcerpt.appendChild(entryExcerptText);
-        article.appendChild(heading);
-        article.appendChild(entryExcerpt);
+      // append all children to their respective parents
+      heading.appendChild(headingLink);
+      entryExcerpt.appendChild(entryExcerptText);
+      article.appendChild(heading);
+      article.appendChild(entryExcerpt);
 
-        // return the new article
-        return article;
+      // return the new article
+      return article;
     }
 
-    function addToPage( element ) {
-        // select the element with the id root
-        var root = document.querySelector('#root');
-        
-        // append the passed in element to the root
-        root.appendChild(element);
+    function addToPage(element) {
+      // select the element with the id root
+      var root = document.querySelector("#root");
+
+      // append the passed in element to the root
+      root.appendChild(element);
     }
 
     // loop over all the posts
     for (var post of posts) {
-        // create an article using our createArticle function and assign it to a local variable
-        var article = createArticle(post.title, post.content, '#');
-        
-        // add that new article to the page
-        addToPage(article);
-    }
+      // create an article using our createArticle function and assign it to a local variable
+      var article = createArticle(post.title, post.content, "#");
 
+      // add that new article to the page
+      addToPage(article);
+    }
   </script>
 </html>
