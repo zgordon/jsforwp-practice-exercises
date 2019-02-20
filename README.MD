@@ -100,3 +100,20 @@
 7. Use a template literal (template string) to use multiple variables inside a string.
 8. Loop through 3 JSON posts and render them to the page (like Week 3 exercise 4) but using `.map()`
 9. Add event listeners to posts to exercise #8 and on click render the full post (with a back button). Use `this` in event handler instead of event.target
+
+
+#Week 7
+
+1. Create a WordPress theme that loads JavaScript on the frontend
+2. Make the theme from exercise #1 dependent on jQuery and load your JavaScript using the jQuery no conflict wrapper.
+3. Add another JavaScript file to your theme from exercise #3.  Make it dependent on your first JS file, but also makes sure it only conditionally loads on one page (of your choice).
+4. Modify your theme so that on the single page where your JS loads it pulls in three posts from the REST API and loads them to the page in the following format:
+```
+<h2><a href="${slug}>${title}</a></h2>
+<p>{excerpt}<p>
+```
+5. Create a WordPress plugin that loads a JavaScript file on the frontend.
+6. Add the ability for your plugin from exercise #4 to load a different JavaScript file just in the admin area.
+7. Create a settings page for your plugin and conditionally load your admin JavaScript file only on that page.
+8. Use `wp_localize_script` to load the name of the site and the path to the REST API route (https://site.com/wp-json) into your JavaScript.
+9. Create an interface with JavaScript that let's you edit a setting in WP Options using AJAX on your plugin settings page.
