@@ -83,7 +83,7 @@
 6. When you click on the link in the navigation list from #5, find the corresponding post from the list of posts from the JSON list and log it to the screen.
 7. Modify the navigation menu so that when you click on a link the entire post is displayed.
 
-# Week 6
+## Week 6
 
 1. Create variables with `var` `let` and `const` and test their scope and ability to be re-assigned or changed.
 2. Create an object using const and make it immutable with freeze.
@@ -102,7 +102,7 @@
 9. Add event listeners to posts to exercise #8 and on click render the full post (with a back button). Use `this` in event handler instead of event.target
 
 
-#Week 7
+## Week 7
 
 1. Create a WordPress theme that loads JavaScript on the frontend
 2. Make the theme from exercise #1 dependent on jQuery and load your JavaScript using the jQuery no conflict wrapper.
