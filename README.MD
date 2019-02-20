@@ -83,7 +83,7 @@
 6. When you click on the link in the navigation list from #5, find the corresponding post from the list of posts from the JSON list and log it to the screen.
 7. Modify the navigation menu so that when you click on a link the entire post is displayed.
 
-# Week 5
+# Week 6
 
 1. Create variables with `var` `let` and `const` and test their scope and ability to be re-assigned or changed.
 2. Create an object using const and make it immutable with freeze.
