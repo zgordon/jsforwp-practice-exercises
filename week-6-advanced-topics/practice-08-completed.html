@@ -4,35 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Practice 9</title>
+    <title>Practice 8</title>
   </head>
   <body>
     <header>
-      <h1>Using .bind & this</h1>
+      <h1>Creating posts</h1>
     </header>
     <hr />
-    <div id="root"></div>
+    <main id="root"></main>
   </body>
   <script>
-    // Add event listeners to posts in example above and on click render the full post (with a back button). Use this in event handler instead of event.target
+    // Loop through 3 JSON posts and render them to the page (like Week 3 exercise 4) but using `.map()`
 
     var postsJson = `
     [
       {
         "id": 1,
         "title": "My awesome post",
-        "content": "My awesome content.",
-        "excerpt": "My excerpt"
+        "content": "My awesome content."
       }, {
         "id": 2,
         "title": "My awesome seccond post",
-        "content": "My awesome content.",
-        "excerpt": "My excerpt"
+        "content": "My awesome content."
       }, {
         "id": 3,
         "title": "My awesome third post",
-        "content": "My awesome content.",
-        "excerpt": "My excerpt"
+        "content": "My awesome content."
       }
     ]
     `;
@@ -43,19 +40,7 @@
     // take our JSON string and store it in localStorage with the key posts
     var posts = JSON.parse(localStorage.getItem("posts"));
 
-    const handleLinkClick = function(event) {
-      // because we bound something to this we have access to whatever was passed in through using this
-      console.log(this);
-
-      // clearing the page
-      clearPage();
-
-      // creatting our post by passting the post we got from this and adding it to the page 
-      addToPage(createArticle(this, true));
-
-    }
-
-    function createArticle(post, isSingle = false) {
+    function createArticle(title, content, link) {
       // create the necessary elements
       var article = document.createElement("article");
       var heading = document.createElement("h2");
@@ -69,22 +54,11 @@
       entryExcerpt.classList.add("entry-excerpt");
 
       // set the href attribute
-      headingLink.href = `#${post.id}`;
-
-      // adding the eventListener and binding the post to it
-      headingLink.addEventListener( 'click', handleLinkClick.bind(post) );
+      headingLink.href = link;
 
       // set the innerText & innerHTML
-      headingLink.innerText = post.title;
-
-      // check if isSingle is set to be true
-      if (isSingle) {
-        // use the post.content if isSingle
-        entryExcerptText.innerHTML = post.content;
-      } else {
-        // use the post.excerpt if isSingle is not true
-        entryExcerptText.innerHTML = post.excerpt;
-      }
+      headingLink.innerText = title;
+      entryExcerptText.innerHTML = content;
 
       // append all children to their respective parents
       heading.appendChild(headingLink);
@@ -94,12 +68,6 @@
 
       // return the new article
       return article;
-    }
-
-    function clearPage() {
-      const root = document.querySelector("#root");
-      root.innerHTML = "";
-
     }
 
     function addToPage(element) {
@@ -113,7 +81,7 @@
     // loop over all the posts
     posts.map(post => {
       // create an article using our createArticle function and assign it to a local variable
-      var article = createArticle(post);
+      var article = createArticle(post.title, post.content, "#");
 
       // add that new article to the page
       addToPage(article);
