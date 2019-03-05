@@ -97,7 +97,7 @@ function getPost(postIndex) {
 9. Add event listeners to posts to exercise #8 and on click render the full post (with a back button). Use `this` in event handler instead of event.target
 
 
-## Week 7
+## Week 7 - Enqueuing JavaScript & Admin AJAX
 
 1. Create a WordPress theme that loads JavaScript on the frontend
 2. Make the theme from exercise #1 dependent on jQuery and load your JavaScript using the jQuery no conflict wrapper.
@@ -124,3 +124,17 @@ function getPost(postIndex) {
 8. Rebuild #7 using async and await.
 9. Build a custom endpoint that gives only the id, title, slug, and excerpt for posts.
 10. Create a custom endpoint that let's you get and save data to the WP Options table.
+
+## Week 9 - React
+1. Create a paragraph with createElement() with a class of special and content of "Hello React". [in repo]
+2. Repeat #1 using JSX
+3. Setup a React App using Create React App (README.md with instructions?)
+4. Create a component named Header that has an h1 and a site description in it
+5. Modify #3 so the title and description are based on props
+6. Create a counter example based on state (example in repo) 
+7. Have state save to local storage
+8. Make an API request to a WordPress site in a componentDidMount and render the posts to the page
+9. Create a page in WordPress called "API Posts" and have #8 display the posts in the main content area
+10. Create a WordPress plugin with a settings page.  Have #8 display on the settings page.
+
+BONUS - Some more [React practice examples](https://fabiankaegy.github.io/react-exercises/) from Fabian
