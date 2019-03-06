@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Practice 4</title>
+  </head>
+  <body>
+    <header>
+      <h1>Log out a specific post</h1>
+    </header>
+    <hr />
+    <main id="root"></main>
+  </body>
+  <script>
+    // Get a specific post based on the post id and `console.log()` the post titles and excerpts
+
+    fetch("https://javascriptforwp.com/wp-json/wp/v2/posts/90053")
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw response;
+        }
+      })
+      .then(post => {
+        console.log("title", post.title.rendered);
+        console.log("exceprt", post.excerpt.rendered);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  </script>
+</html>

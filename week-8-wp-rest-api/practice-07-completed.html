@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Practice 7</title>
+  </head>
+  <body>
+    <header>
+      <h1>Gettings Authors and their three latest posts</h1>
+    </header>
+    <hr />
+    <main id="root"></main>
+  </body>
+  <script>
+    // Make a request to get all the users. Then another request to get the latest 3 posts for each user. Build a simple user page with the author name then their posts listed below.
+
+    fetch("https://javascriptforwp.com/wp-json/wp/v2/users")
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw response;
+        }
+      })
+      .then(authors => {
+        authors.map(author => {
+          fetch(
+            `https://javascriptforwp.com/wp-json/wp/v2/posts?author=${
+              author.id
+            }&per_page=3`
+          )
+            .then(response => {
+              if (response.ok) {
+                return response.json();
+              } else {
+                throw response;
+              }
+            })
+            .then(posts => {
+              const authorElement = createAuthor(author);
+              const postElements = posts.map(post => createPost(post));
+
+              addToPage(authorElement);
+              postElements.map(postElement => addToPage(postElement));
+              addToPage(document.createElement("hr"));
+            })
+            .catch(error => console.error(error));
+        });
+      })
+      .catch(error => console.error(error));
+
+    function addToPage(element) {
+      const root = document.getElementById("root");
+
+      root.appendChild(element);
+    }
+
+    function clearPage() {
+      const root = document.getElementById("root");
+
+      root.innerHTML = "";
+    }
+
+    function createAuthor(author) {
+      const newAuthor = document.createElement("h2");
+      newAuthor.innerHTML = author.name;
+
+      return newAuthor;
+    }
+
+    function createPost(post) {
+      const newPost = document.createElement("div");
+      const postTitle = document.createElement("h3");
+      const postExcerpt = document.createElement("p");
+
+      postTitle.innerHTML = post.title.rendered;
+      postExcerpt.innerHTML = post.excerpt.rendered;
+
+      newPost.appendChild(postTitle);
+      newPost.appendChild(postExcerpt);
+
+      return newPost;
+    }
+  </script>
+</html>
